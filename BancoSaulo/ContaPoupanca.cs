@@ -8,23 +8,21 @@ namespace BancoSaulo
 {
     class ContaPoupanca : Conta
     {
-        public ContaPoupanca(Cliente cliente, int numeroConta) : base(cliente, numeroConta)
+        public ContaPoupanca(Cliente cliente) : base(cliente)
         {
             this.Titular = cliente;
-            this.numeroConta = numeroConta;
             this.defineLimite(Titular.GanhoCliente);
         }
 
-        public override bool saque(double valor)
+        public override void saque(double valor)
         {
             if (valor <= saldo)
             {
                 this.saldo -= (valor + 0.10);
-                return true;
             }
             else
             {
-                return false;
+                throw new Exception("Valor do saque superior ao saldo");
             }
         }
 

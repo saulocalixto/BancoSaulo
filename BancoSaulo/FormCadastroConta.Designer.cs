@@ -36,6 +36,8 @@
             this.textoGanho = new System.Windows.Forms.TextBox();
             this.labelGanho = new System.Windows.Forms.Label();
             this.cadastrarBotao = new System.Windows.Forms.Button();
+            this.labelTipoConta = new System.Windows.Forms.Label();
+            this.boxTipoConta = new System.Windows.Forms.ComboBox();
             this.cadastrarBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,14 +54,14 @@
             // 
             this.textoNumero.Location = new System.Drawing.Point(134, 45);
             this.textoNumero.Name = "textoNumero";
-            this.textoNumero.Size = new System.Drawing.Size(100, 20);
+            this.textoNumero.Size = new System.Drawing.Size(118, 20);
             this.textoNumero.TabIndex = 1;
             // 
             // textoTitular
             // 
             this.textoTitular.Location = new System.Drawing.Point(134, 80);
             this.textoTitular.Name = "textoTitular";
-            this.textoTitular.Size = new System.Drawing.Size(100, 20);
+            this.textoTitular.Size = new System.Drawing.Size(118, 20);
             this.textoTitular.TabIndex = 3;
             // 
             // titularLabel
@@ -73,12 +75,14 @@
             // 
             // cadastrarBox
             // 
+            this.cadastrarBox.Controls.Add(this.boxTipoConta);
+            this.cadastrarBox.Controls.Add(this.labelTipoConta);
             this.cadastrarBox.Controls.Add(this.textoGanho);
             this.cadastrarBox.Controls.Add(this.labelGanho);
             this.cadastrarBox.Controls.Add(this.cadastrarBotao);
             this.cadastrarBox.Location = new System.Drawing.Point(30, 13);
             this.cadastrarBox.Name = "cadastrarBox";
-            this.cadastrarBox.Size = new System.Drawing.Size(242, 172);
+            this.cadastrarBox.Size = new System.Drawing.Size(258, 213);
             this.cadastrarBox.TabIndex = 4;
             this.cadastrarBox.TabStop = false;
             this.cadastrarBox.Text = "Cadastrar Cliente";
@@ -87,7 +91,7 @@
             // 
             this.textoGanho.Location = new System.Drawing.Point(104, 102);
             this.textoGanho.Name = "textoGanho";
-            this.textoGanho.Size = new System.Drawing.Size(100, 20);
+            this.textoGanho.Size = new System.Drawing.Size(118, 20);
             this.textoGanho.TabIndex = 2;
             // 
             // labelGanho
@@ -101,7 +105,7 @@
             // 
             // cadastrarBotao
             // 
-            this.cadastrarBotao.Location = new System.Drawing.Point(129, 143);
+            this.cadastrarBotao.Location = new System.Drawing.Point(121, 184);
             this.cadastrarBotao.Name = "cadastrarBotao";
             this.cadastrarBotao.Size = new System.Drawing.Size(75, 23);
             this.cadastrarBotao.TabIndex = 0;
@@ -109,11 +113,29 @@
             this.cadastrarBotao.UseVisualStyleBackColor = true;
             this.cadastrarBotao.Click += new System.EventHandler(this.cadastrarBotao_Click);
             // 
+            // labelTipoConta
+            // 
+            this.labelTipoConta.AutoSize = true;
+            this.labelTipoConta.Location = new System.Drawing.Point(31, 145);
+            this.labelTipoConta.Name = "labelTipoConta";
+            this.labelTipoConta.Size = new System.Drawing.Size(59, 13);
+            this.labelTipoConta.TabIndex = 3;
+            this.labelTipoConta.Text = "Tipo Conta";
+            // 
+            // boxTipoConta
+            // 
+            this.boxTipoConta.FormattingEnabled = true;
+            this.boxTipoConta.Location = new System.Drawing.Point(104, 137);
+            this.boxTipoConta.Name = "boxTipoConta";
+            this.boxTipoConta.Size = new System.Drawing.Size(118, 21);
+            this.boxTipoConta.TabIndex = 4;
+            this.boxTipoConta.SelectedIndexChanged += new System.EventHandler(this.boxTipoConta_SelectedIndexChanged);
+            // 
             // FormCadastroConta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 214);
+            this.ClientSize = new System.Drawing.Size(335, 260);
             this.Controls.Add(this.textoTitular);
             this.Controls.Add(this.titularLabel);
             this.Controls.Add(this.textoNumero);
@@ -121,6 +143,7 @@
             this.Controls.Add(this.cadastrarBox);
             this.Name = "FormCadastroConta";
             this.Text = "FormCadastroConta";
+            this.Load += new System.EventHandler(this.FormCadastroConta_Load);
             this.cadastrarBox.ResumeLayout(false);
             this.cadastrarBox.PerformLayout();
             this.ResumeLayout(false);
@@ -138,5 +161,7 @@
         private System.Windows.Forms.Button cadastrarBotao;
         private System.Windows.Forms.TextBox textoGanho;
         private System.Windows.Forms.Label labelGanho;
+        private System.Windows.Forms.ComboBox boxTipoConta;
+        private System.Windows.Forms.Label labelTipoConta;
     }
 }

@@ -43,9 +43,10 @@
             this.transferenciabox = new System.Windows.Forms.ComboBox();
             this.labeltransferencia = new System.Windows.Forms.Label();
             this.groupBuscarConta = new System.Windows.Forms.GroupBox();
+            this.novaContaBotao = new System.Windows.Forms.Button();
             this.comboContas = new System.Windows.Forms.ComboBox();
             this.LabelEscolha = new System.Windows.Forms.Label();
-            this.novaContaBotao = new System.Windows.Forms.Button();
+            this.botaoImposto = new System.Windows.Forms.Button();
             this.contaCliente.SuspendLayout();
             this.groupBuscarConta.SuspendLayout();
             this.SuspendLayout();
@@ -136,6 +137,7 @@
             // 
             // contaCliente
             // 
+            this.contaCliente.Controls.Add(this.botaoImposto);
             this.contaCliente.Controls.Add(this.transferir);
             this.contaCliente.Controls.Add(this.transferenciabox);
             this.contaCliente.Controls.Add(this.labeltransferencia);
@@ -151,7 +153,7 @@
             this.contaCliente.Controls.Add(this.textoSaldo);
             this.contaCliente.Location = new System.Drawing.Point(12, 109);
             this.contaCliente.Name = "contaCliente";
-            this.contaCliente.Size = new System.Drawing.Size(291, 243);
+            this.contaCliente.Size = new System.Drawing.Size(291, 268);
             this.contaCliente.TabIndex = 10;
             this.contaCliente.TabStop = false;
             this.contaCliente.Text = "Conta";
@@ -196,6 +198,16 @@
             this.groupBuscarConta.TabStop = false;
             this.groupBuscarConta.Text = "Buscar Conta";
             // 
+            // novaContaBotao
+            // 
+            this.novaContaBotao.Location = new System.Drawing.Point(9, 54);
+            this.novaContaBotao.Name = "novaContaBotao";
+            this.novaContaBotao.Size = new System.Drawing.Size(75, 23);
+            this.novaContaBotao.TabIndex = 13;
+            this.novaContaBotao.Text = "Nova Conta";
+            this.novaContaBotao.UseVisualStyleBackColor = true;
+            this.novaContaBotao.Click += new System.EventHandler(this.novaContaBotao_Click);
+            // 
             // comboContas
             // 
             this.comboContas.FormattingEnabled = true;
@@ -214,21 +226,21 @@
             this.LabelEscolha.TabIndex = 0;
             this.LabelEscolha.Text = "Escolha a Conta";
             // 
-            // novaContaBotao
+            // botaoImposto
             // 
-            this.novaContaBotao.Location = new System.Drawing.Point(9, 54);
-            this.novaContaBotao.Name = "novaContaBotao";
-            this.novaContaBotao.Size = new System.Drawing.Size(75, 23);
-            this.novaContaBotao.TabIndex = 13;
-            this.novaContaBotao.Text = "Nova Conta";
-            this.novaContaBotao.UseVisualStyleBackColor = true;
-            this.novaContaBotao.Click += new System.EventHandler(this.novaContaBotao_Click);
+            this.botaoImposto.Location = new System.Drawing.Point(109, 227);
+            this.botaoImposto.Name = "botaoImposto";
+            this.botaoImposto.Size = new System.Drawing.Size(75, 23);
+            this.botaoImposto.TabIndex = 13;
+            this.botaoImposto.Text = "Impostos";
+            this.botaoImposto.UseVisualStyleBackColor = true;
+            this.botaoImposto.Click += new System.EventHandler(this.botaoImposto_Click);
             // 
             // Banco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 362);
+            this.ClientSize = new System.Drawing.Size(321, 402);
             this.Controls.Add(this.groupBuscarConta);
             this.Controls.Add(this.contaCliente);
             this.Name = "Banco";
@@ -262,6 +274,7 @@
         private System.Windows.Forms.ComboBox transferenciabox;
         private System.Windows.Forms.Label labeltransferencia;
         private System.Windows.Forms.Button novaContaBotao;
+        private System.Windows.Forms.Button botaoImposto;
     }
 }
 

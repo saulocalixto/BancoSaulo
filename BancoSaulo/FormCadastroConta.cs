@@ -14,6 +14,8 @@ namespace BancoSaulo
     {
         private Banco formPrincipal;
 
+        int tipoConta;
+
         public FormCadastroConta(Banco formPrincipal)
         {
             this.formPrincipal = formPrincipal;
@@ -23,15 +25,21 @@ namespace BancoSaulo
         private void cadastrarBotao_Click(object sender, EventArgs e)
         {
             string titular = textoTitular.Text.ToString();
-            int numeroConta = Convert.ToInt32(textoNumero.Text);
 
             Cliente cliente = new Cliente(titular);
             cliente.GanhoCliente = Convert.ToDouble(textoGanho.Text);
-
-            Conta novaConta = new ContaCorrente(cliente, numeroConta);
+            Conta novaConta;
+            if (tipoConta == 0)
+            {
+               novaConta  = new ContaCorrente(cliente);
+            } else
+            {
+                novaConta = new ContaPoupanca(cliente);
+            }
 
             this.formPrincipal.AdicionaConta(novaConta);
             limparCampos();
+            textoNumero.Text = Conta.proximaConta().ToString();
         }
 
         private void limparCampos()
@@ -39,6 +47,18 @@ namespace BancoSaulo
             textoTitular.Text = "";
             textoNumero.Text = "";
             textoGanho.Text = "";
+        }
+
+        private void FormCadastroConta_Load(object sender, EventArgs e)
+        {
+            textoNumero.Text = Conta.proximaConta().ToString();
+            boxTipoConta.Items.Add("Conta Corrente");
+            boxTipoConta.Items.Add("Conta Poupança");
+        }
+
+        private void boxTipoConta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tipoConta = boxTipoConta.SelectedIndex;
         }
     }
 }

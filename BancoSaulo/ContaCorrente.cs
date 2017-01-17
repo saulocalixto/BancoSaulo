@@ -1,24 +1,25 @@
-﻿namespace BancoSaulo
+﻿using System;
+
+namespace BancoSaulo
 {
     internal class ContaCorrente : Conta, ITributavel
     {
-        public ContaCorrente(Cliente cliente, int numeroConta) : base(cliente, numeroConta)
+
+        public ContaCorrente(Cliente cliente) : base(cliente)
         {
             Titular = cliente;
-            this.numeroConta = numeroConta;
             defineLimite(Titular.GanhoCliente);
         }
 
-        public override bool saque(double valor)
+        public override void saque(double valor)
         {
             if (valor <= saldo)
             {
                 this.saldo -= (valor + 0.05);
-                return true;
             }
             else
             {
-                return false;
+                throw new Exception("Valor do saque superior ao saldo");
             }
         }
 

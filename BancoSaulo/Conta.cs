@@ -13,31 +13,38 @@ namespace BancoSaulo
 
         public Cliente Titular { get; set; }
         public int numeroConta { get; protected set; }
+        private static int totalContas = 100;
 
         //Construtor da Classe
-        public Conta(Cliente cliente, int numeroConta)
+        public Conta(Cliente cliente)
         {
-            Titular = cliente;
-            this.numeroConta = numeroConta;
-            defineLimite(Titular.GanhoCliente);
+            totalContas++;
+            numeroConta = totalContas;
+        }
+
+        public static int proximaConta()
+        {
+            return totalContas + 1;
         }
 
         private double limite;
         public double saldo { get; protected set; }
 
-        public abstract bool saque(double valor);
+        public abstract void saque(double valor);
 
         public abstract void deposito(double valor);
 
         public void Transferencia(Conta destino, double valor)
         {
-            if(this.saque(valor))
+            try
             {
+                this.saque(valor);
                 destino.deposito(valor);
-            } else
+            } catch (Exception ex)
             {
-                //faça algo.
+                throw new Exception("Valor do saque superior ao saldo");
             }
+            
         }
 
         public void defineLimite(double ganhoCliente)
@@ -45,6 +52,5 @@ namespace BancoSaulo
             limite = ganhoCliente * 0.20;
             saldo = limite;
         }
-
     }
 }
