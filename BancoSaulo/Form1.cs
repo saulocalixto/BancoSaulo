@@ -17,24 +17,27 @@ namespace BancoSaulo
             InitializeComponent();
         }
 
-        private Conta[] contas;
-        int indice = 0;
-        int indiceTransferencia = 0;
+        private List<Conta> contas;
+        private Dictionary<string, Conta> dicionario;
         int numeroDeContas = 0;
+        Conta selecionada;
+        Conta transferenciaConta;
+        private double somaSaldo;
 
         public void AdicionaConta(Conta conta)
         {
-            this.contas[this.numeroDeContas] = conta;
+            this.dicionario.Add(conta.Titular.NomeCliente, conta);
+            this.contas.Add(conta);
             this.numeroDeContas++;
-            transferenciabox.Items.Add(conta.Titular.NomeCliente);
-            comboContas.Items.Add(conta.Titular.NomeCliente);
+            somaSaldo = contas.Sum(c => c.saldo);
+            comboContas.Items.Add(conta);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            contas = new Conta[10];
-
+            this.contas = new List<Conta>();
+            this.dicionario = new Dictionary<string, Conta>();
             TotalizadorDeContas t = new TotalizadorDeContas();
 
         }
@@ -44,9 +47,9 @@ namespace BancoSaulo
             string valorDigitado = textoValor.Text;
             double valorDepositar = Convert.ToDouble(valorDigitado);
 
-            this.contas[indice].deposito(valorDepositar);
+            selecionada.deposito(valorDepositar);
 
-            textoSaldo.Text = Convert.ToString(contas[indice].saldo);
+            textoSaldo.Text = Convert.ToString(selecionada.saldo);
 
             MessageBox.Show("Depósito Realizado com Sucesso!", "Sucesso");
 
@@ -60,14 +63,18 @@ namespace BancoSaulo
 
             try
             {
-                contas[indice].saque(valorSacar);
-                textoSaldo.Text = Convert.ToString(contas[indice].saldo);
+                selecionada.saque(valorSacar);
+                textoSaldo.Text = Convert.ToString(selecionada.saldo);
                 MessageBox.Show("Saque Realizado com Sucesso!", "Sucesso");
                 zerarValor();
-            } catch (Exception ex)
+            }
+            catch (SaldoInsuficienteException ex)
             {
-                MessageBox.Show("Você não possui saldo suficiente!", "Falha");
-                zerarValor();
+                MessageBox.Show("Sem saldo suficiente!", "Erro!");
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Valor de saque menor não pode ser negativo!", "Erro!");
             }
         }
 
@@ -79,18 +86,29 @@ namespace BancoSaulo
 
         private void comboContas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            indice = comboContas.SelectedIndex;
+            transferenciabox.Items.Clear();
+            selecionada = (Conta)comboContas.SelectedItem;
 
-            textoTitular.Text = contas[indice].Titular.NomeCliente;
+            textoTitular.Text = selecionada.Titular.NomeCliente;
 
-            textoNumero.Text = contas[indice].numeroConta.ToString();
+            textoNumero.Text = selecionada.numeroConta.ToString();
 
-            textoSaldo.Text = Convert.ToString(contas[indice].saldo);
+            textoSaldo.Text = Convert.ToString(selecionada.saldo);
+
+            foreach(Conta conta in contas)
+            {
+                if ( !(conta.Equals(selecionada)) )
+                {
+                    transferenciabox.Items.Add(conta);
+                }
+            }
+
+            
         }
 
         private void transferenciabox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            indiceTransferencia = transferenciabox.SelectedIndex;
+            transferenciaConta = (Conta)transferenciabox.SelectedItem;
         }
 
         private void transferir_Click(object sender, EventArgs e)
@@ -100,10 +118,13 @@ namespace BancoSaulo
 
             try
             {
-                this.contas[indice].Transferencia(contas[indiceTransferencia], valorTransferir);
-            } catch (Exception ex)
+                selecionada.Transferencia(transferenciaConta, valorTransferir);
+            } catch (SaldoInsuficienteException ex)
             {
                 MessageBox.Show("Sem saldo suficiente!", "Erro!");
+            } catch (ArgumentException)
+            {
+                MessageBox.Show("Valor de saque menor não pode ser negativo!", "Erro!");
             }
 
             zerarValor();
@@ -117,9 +138,9 @@ namespace BancoSaulo
 
         private void botaoImposto_Click(object sender, EventArgs e)
         {
-            if (contas[indice] is ContaCorrente)
+            if (selecionada is ContaCorrente)
             {
-                ITributavel t = (ContaCorrente) contas[indice];
+                ITributavel t = (ContaCorrente) selecionada;
                 MessageBox.Show("O Imposto da conta é: " + t.calculaTributos(), "Impostos");
             } else
             {
@@ -127,6 +148,34 @@ namespace BancoSaulo
             }
 
             
+        }
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string buscaTitular = textoBuscaNome.Text.ToString();
+
+                Conta contaBusca = dicionario[buscaTitular];
+
+                textoTitular.Text = contaBusca.Titular.NomeCliente;
+
+                textoNumero.Text = contaBusca.numeroConta.ToString();
+
+                textoSaldo.Text = Convert.ToString(contaBusca.saldo);
+
+                comboContas.SelectedItem = contaBusca;
+            }
+            catch(KeyNotFoundException ex)
+            {
+                MessageBox.Show("Conta não encontrada!", "Erro!");
+            }
+        }
+
+        private void botaoRelatorio_Click(object sender, EventArgs e)
+        {
+            FormRelatorios form = new FormRelatorios(contas);
+            form.ShowDialog();
         }
     }
 }

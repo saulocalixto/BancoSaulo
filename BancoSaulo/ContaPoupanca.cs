@@ -16,13 +16,19 @@ namespace BancoSaulo
 
         public override void saque(double valor)
         {
+
+            if(valor < 0)
+            {
+                throw new ArgumentException();
+            }
+
             if (valor <= saldo)
             {
                 this.saldo -= (valor + 0.10);
             }
             else
             {
-                throw new Exception("Valor do saque superior ao saldo");
+                throw new SaldoInsuficienteException();
             }
         }
 

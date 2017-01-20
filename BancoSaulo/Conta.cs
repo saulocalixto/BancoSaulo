@@ -40,9 +40,12 @@ namespace BancoSaulo
             {
                 this.saque(valor);
                 destino.deposito(valor);
-            } catch (Exception ex)
+            } catch (SaldoInsuficienteException ex)
             {
-                throw new Exception("Valor do saque superior ao saldo");
+                throw new SaldoInsuficienteException();
+            } catch (ArgumentException ex)
+            {
+                throw new ArgumentException();
             }
             
         }
@@ -51,6 +54,21 @@ namespace BancoSaulo
         {
             limite = ganhoCliente * 0.20;
             saldo = limite;
+        }
+
+        public override string ToString()
+        {
+            return numeroConta + " - " + this.Titular.NomeCliente;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(!(obj is Conta))
+            {
+                return false;
+            }
+            Conta contaEmQuestao = (Conta) obj;
+            return (this.numeroConta == contaEmQuestao.numeroConta);
         }
     }
 }

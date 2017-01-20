@@ -2,7 +2,6 @@
 {
     public class Cliente
     {
-        private string v;
 
         public string NomeCliente { get; set; }
 

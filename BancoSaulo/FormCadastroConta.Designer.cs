@@ -33,11 +33,11 @@
             this.textoTitular = new System.Windows.Forms.TextBox();
             this.titularLabel = new System.Windows.Forms.Label();
             this.cadastrarBox = new System.Windows.Forms.GroupBox();
+            this.boxTipoConta = new System.Windows.Forms.ComboBox();
+            this.labelTipoConta = new System.Windows.Forms.Label();
             this.textoGanho = new System.Windows.Forms.TextBox();
             this.labelGanho = new System.Windows.Forms.Label();
             this.cadastrarBotao = new System.Windows.Forms.Button();
-            this.labelTipoConta = new System.Windows.Forms.Label();
-            this.boxTipoConta = new System.Windows.Forms.ComboBox();
             this.cadastrarBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,13 +56,14 @@
             this.textoNumero.Name = "textoNumero";
             this.textoNumero.Size = new System.Drawing.Size(118, 20);
             this.textoNumero.TabIndex = 1;
+            this.textoNumero.TabStop = false;
             // 
             // textoTitular
             // 
             this.textoTitular.Location = new System.Drawing.Point(134, 80);
             this.textoTitular.Name = "textoTitular";
             this.textoTitular.Size = new System.Drawing.Size(118, 20);
-            this.textoTitular.TabIndex = 3;
+            this.textoTitular.TabIndex = 0;
             // 
             // titularLabel
             // 
@@ -87,12 +88,30 @@
             this.cadastrarBox.TabStop = false;
             this.cadastrarBox.Text = "Cadastrar Cliente";
             // 
+            // boxTipoConta
+            // 
+            this.boxTipoConta.FormattingEnabled = true;
+            this.boxTipoConta.Location = new System.Drawing.Point(104, 137);
+            this.boxTipoConta.Name = "boxTipoConta";
+            this.boxTipoConta.Size = new System.Drawing.Size(118, 21);
+            this.boxTipoConta.TabIndex = 2;
+            this.boxTipoConta.SelectedIndexChanged += new System.EventHandler(this.boxTipoConta_SelectedIndexChanged);
+            // 
+            // labelTipoConta
+            // 
+            this.labelTipoConta.AutoSize = true;
+            this.labelTipoConta.Location = new System.Drawing.Point(31, 145);
+            this.labelTipoConta.Name = "labelTipoConta";
+            this.labelTipoConta.Size = new System.Drawing.Size(59, 13);
+            this.labelTipoConta.TabIndex = 3;
+            this.labelTipoConta.Text = "Tipo Conta";
+            // 
             // textoGanho
             // 
             this.textoGanho.Location = new System.Drawing.Point(104, 102);
             this.textoGanho.Name = "textoGanho";
             this.textoGanho.Size = new System.Drawing.Size(118, 20);
-            this.textoGanho.TabIndex = 2;
+            this.textoGanho.TabIndex = 1;
             // 
             // labelGanho
             // 
@@ -105,36 +124,19 @@
             // 
             // cadastrarBotao
             // 
-            this.cadastrarBotao.Location = new System.Drawing.Point(121, 184);
+            this.cadastrarBotao.Location = new System.Drawing.Point(147, 184);
             this.cadastrarBotao.Name = "cadastrarBotao";
             this.cadastrarBotao.Size = new System.Drawing.Size(75, 23);
-            this.cadastrarBotao.TabIndex = 0;
+            this.cadastrarBotao.TabIndex = 3;
             this.cadastrarBotao.Text = "Cadastrar";
             this.cadastrarBotao.UseVisualStyleBackColor = true;
             this.cadastrarBotao.Click += new System.EventHandler(this.cadastrarBotao_Click);
-            // 
-            // labelTipoConta
-            // 
-            this.labelTipoConta.AutoSize = true;
-            this.labelTipoConta.Location = new System.Drawing.Point(31, 145);
-            this.labelTipoConta.Name = "labelTipoConta";
-            this.labelTipoConta.Size = new System.Drawing.Size(59, 13);
-            this.labelTipoConta.TabIndex = 3;
-            this.labelTipoConta.Text = "Tipo Conta";
-            // 
-            // boxTipoConta
-            // 
-            this.boxTipoConta.FormattingEnabled = true;
-            this.boxTipoConta.Location = new System.Drawing.Point(104, 137);
-            this.boxTipoConta.Name = "boxTipoConta";
-            this.boxTipoConta.Size = new System.Drawing.Size(118, 21);
-            this.boxTipoConta.TabIndex = 4;
-            this.boxTipoConta.SelectedIndexChanged += new System.EventHandler(this.boxTipoConta_SelectedIndexChanged);
             // 
             // FormCadastroConta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(335, 260);
             this.Controls.Add(this.textoTitular);
             this.Controls.Add(this.titularLabel);

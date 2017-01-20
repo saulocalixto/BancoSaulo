@@ -39,14 +39,18 @@
             this.depositar = new System.Windows.Forms.Button();
             this.sacar = new System.Windows.Forms.Button();
             this.contaCliente = new System.Windows.Forms.GroupBox();
+            this.botaoImposto = new System.Windows.Forms.Button();
             this.transferir = new System.Windows.Forms.Button();
             this.transferenciabox = new System.Windows.Forms.ComboBox();
             this.labeltransferencia = new System.Windows.Forms.Label();
             this.groupBuscarConta = new System.Windows.Forms.GroupBox();
+            this.buscar = new System.Windows.Forms.Button();
+            this.textoBuscaNome = new System.Windows.Forms.TextBox();
+            this.labelBusca = new System.Windows.Forms.Label();
             this.novaContaBotao = new System.Windows.Forms.Button();
             this.comboContas = new System.Windows.Forms.ComboBox();
             this.LabelEscolha = new System.Windows.Forms.Label();
-            this.botaoImposto = new System.Windows.Forms.Button();
+            this.botaoRelatorio = new System.Windows.Forms.Button();
             this.contaCliente.SuspendLayout();
             this.groupBuscarConta.SuspendLayout();
             this.SuspendLayout();
@@ -56,21 +60,21 @@
             this.textoTitular.Location = new System.Drawing.Point(97, 33);
             this.textoTitular.Name = "textoTitular";
             this.textoTitular.Size = new System.Drawing.Size(100, 20);
-            this.textoTitular.TabIndex = 0;
+            this.textoTitular.TabIndex = 2;
             // 
             // textoNumero
             // 
             this.textoNumero.Location = new System.Drawing.Point(97, 59);
             this.textoNumero.Name = "textoNumero";
             this.textoNumero.Size = new System.Drawing.Size(100, 20);
-            this.textoNumero.TabIndex = 1;
+            this.textoNumero.TabIndex = 3;
             // 
             // textoSaldo
             // 
             this.textoSaldo.Location = new System.Drawing.Point(97, 85);
             this.textoSaldo.Name = "textoSaldo";
             this.textoSaldo.Size = new System.Drawing.Size(100, 20);
-            this.textoSaldo.TabIndex = 2;
+            this.textoSaldo.TabIndex = 4;
             // 
             // titular
             // 
@@ -113,21 +117,21 @@
             this.textoValor.Location = new System.Drawing.Point(97, 139);
             this.textoValor.Name = "textoValor";
             this.textoValor.Size = new System.Drawing.Size(100, 20);
-            this.textoValor.TabIndex = 7;
+            this.textoValor.TabIndex = 6;
             // 
             // depositar
             // 
-            this.depositar.Location = new System.Drawing.Point(6, 198);
+            this.depositar.Location = new System.Drawing.Point(30, 227);
             this.depositar.Name = "depositar";
             this.depositar.Size = new System.Drawing.Size(75, 23);
-            this.depositar.TabIndex = 8;
+            this.depositar.TabIndex = 7;
             this.depositar.Text = "Depositar";
             this.depositar.UseVisualStyleBackColor = true;
             this.depositar.Click += new System.EventHandler(this.depositar_Click);
             // 
             // sacar
             // 
-            this.sacar.Location = new System.Drawing.Point(210, 198);
+            this.sacar.Location = new System.Drawing.Point(30, 198);
             this.sacar.Name = "sacar";
             this.sacar.Size = new System.Drawing.Size(75, 23);
             this.sacar.TabIndex = 9;
@@ -137,6 +141,7 @@
             // 
             // contaCliente
             // 
+            this.contaCliente.Controls.Add(this.botaoRelatorio);
             this.contaCliente.Controls.Add(this.botaoImposto);
             this.contaCliente.Controls.Add(this.transferir);
             this.contaCliente.Controls.Add(this.transferenciabox);
@@ -151,19 +156,29 @@
             this.contaCliente.Controls.Add(this.numero);
             this.contaCliente.Controls.Add(this.textoNumero);
             this.contaCliente.Controls.Add(this.textoSaldo);
-            this.contaCliente.Location = new System.Drawing.Point(12, 109);
+            this.contaCliente.Location = new System.Drawing.Point(12, 154);
             this.contaCliente.Name = "contaCliente";
             this.contaCliente.Size = new System.Drawing.Size(291, 268);
             this.contaCliente.TabIndex = 10;
             this.contaCliente.TabStop = false;
             this.contaCliente.Text = "Conta";
             // 
+            // botaoImposto
+            // 
+            this.botaoImposto.Location = new System.Drawing.Point(167, 227);
+            this.botaoImposto.Name = "botaoImposto";
+            this.botaoImposto.Size = new System.Drawing.Size(100, 23);
+            this.botaoImposto.TabIndex = 10;
+            this.botaoImposto.Text = "Impostos";
+            this.botaoImposto.UseVisualStyleBackColor = true;
+            this.botaoImposto.Click += new System.EventHandler(this.botaoImposto_Click);
+            // 
             // transferir
             // 
-            this.transferir.Location = new System.Drawing.Point(97, 198);
+            this.transferir.Location = new System.Drawing.Point(167, 198);
             this.transferir.Name = "transferir";
             this.transferir.Size = new System.Drawing.Size(100, 23);
-            this.transferir.TabIndex = 12;
+            this.transferir.TabIndex = 8;
             this.transferir.Text = "Transferência";
             this.transferir.UseVisualStyleBackColor = true;
             this.transferir.Click += new System.EventHandler(this.transferir_Click);
@@ -174,7 +189,7 @@
             this.transferenciabox.Location = new System.Drawing.Point(97, 112);
             this.transferenciabox.Name = "transferenciabox";
             this.transferenciabox.Size = new System.Drawing.Size(100, 21);
-            this.transferenciabox.TabIndex = 11;
+            this.transferenciabox.TabIndex = 5;
             this.transferenciabox.SelectedIndexChanged += new System.EventHandler(this.transferenciabox_SelectedIndexChanged);
             // 
             // labeltransferencia
@@ -188,22 +203,51 @@
             // 
             // groupBuscarConta
             // 
+            this.groupBuscarConta.Controls.Add(this.buscar);
+            this.groupBuscarConta.Controls.Add(this.textoBuscaNome);
+            this.groupBuscarConta.Controls.Add(this.labelBusca);
             this.groupBuscarConta.Controls.Add(this.novaContaBotao);
             this.groupBuscarConta.Controls.Add(this.comboContas);
             this.groupBuscarConta.Controls.Add(this.LabelEscolha);
             this.groupBuscarConta.Location = new System.Drawing.Point(12, 13);
             this.groupBuscarConta.Name = "groupBuscarConta";
-            this.groupBuscarConta.Size = new System.Drawing.Size(291, 87);
+            this.groupBuscarConta.Size = new System.Drawing.Size(291, 135);
             this.groupBuscarConta.TabIndex = 11;
             this.groupBuscarConta.TabStop = false;
             this.groupBuscarConta.Text = "Buscar Conta";
             // 
+            // buscar
+            // 
+            this.buscar.Location = new System.Drawing.Point(203, 57);
+            this.buscar.Name = "buscar";
+            this.buscar.Size = new System.Drawing.Size(64, 23);
+            this.buscar.TabIndex = 4;
+            this.buscar.Text = "Buscar";
+            this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
+            // 
+            // textoBuscaNome
+            // 
+            this.textoBuscaNome.Location = new System.Drawing.Point(97, 57);
+            this.textoBuscaNome.Name = "textoBuscaNome";
+            this.textoBuscaNome.Size = new System.Drawing.Size(100, 20);
+            this.textoBuscaNome.TabIndex = 3;
+            // 
+            // labelBusca
+            // 
+            this.labelBusca.AutoSize = true;
+            this.labelBusca.Location = new System.Drawing.Point(9, 57);
+            this.labelBusca.Name = "labelBusca";
+            this.labelBusca.Size = new System.Drawing.Size(87, 13);
+            this.labelBusca.TabIndex = 2;
+            this.labelBusca.Text = "Busca por Titular";
+            // 
             // novaContaBotao
             // 
-            this.novaContaBotao.Location = new System.Drawing.Point(9, 54);
+            this.novaContaBotao.Location = new System.Drawing.Point(9, 95);
             this.novaContaBotao.Name = "novaContaBotao";
             this.novaContaBotao.Size = new System.Drawing.Size(75, 23);
-            this.novaContaBotao.TabIndex = 13;
+            this.novaContaBotao.TabIndex = 1;
             this.novaContaBotao.Text = "Nova Conta";
             this.novaContaBotao.UseVisualStyleBackColor = true;
             this.novaContaBotao.Click += new System.EventHandler(this.novaContaBotao_Click);
@@ -214,7 +258,7 @@
             this.comboContas.Location = new System.Drawing.Point(97, 27);
             this.comboContas.Name = "comboContas";
             this.comboContas.Size = new System.Drawing.Size(170, 21);
-            this.comboContas.TabIndex = 3;
+            this.comboContas.TabIndex = 0;
             this.comboContas.SelectedIndexChanged += new System.EventHandler(this.comboContas_SelectedIndexChanged);
             // 
             // LabelEscolha
@@ -226,21 +270,24 @@
             this.LabelEscolha.TabIndex = 0;
             this.LabelEscolha.Text = "Escolha a Conta";
             // 
-            // botaoImposto
+            // botaoRelatorio
             // 
-            this.botaoImposto.Location = new System.Drawing.Point(109, 227);
-            this.botaoImposto.Name = "botaoImposto";
-            this.botaoImposto.Size = new System.Drawing.Size(75, 23);
-            this.botaoImposto.TabIndex = 13;
-            this.botaoImposto.Text = "Impostos";
-            this.botaoImposto.UseVisualStyleBackColor = true;
-            this.botaoImposto.Click += new System.EventHandler(this.botaoImposto_Click);
+            this.botaoRelatorio.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.botaoRelatorio.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.botaoRelatorio.Location = new System.Drawing.Point(97, 169);
+            this.botaoRelatorio.Name = "botaoRelatorio";
+            this.botaoRelatorio.Size = new System.Drawing.Size(75, 23);
+            this.botaoRelatorio.TabIndex = 11;
+            this.botaoRelatorio.Text = "Relatório";
+            this.botaoRelatorio.UseVisualStyleBackColor = false;
+            this.botaoRelatorio.Click += new System.EventHandler(this.botaoRelatorio_Click);
             // 
             // Banco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 402);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(318, 430);
             this.Controls.Add(this.groupBuscarConta);
             this.Controls.Add(this.contaCliente);
             this.Name = "Banco";
@@ -275,6 +322,10 @@
         private System.Windows.Forms.Label labeltransferencia;
         private System.Windows.Forms.Button novaContaBotao;
         private System.Windows.Forms.Button botaoImposto;
+        private System.Windows.Forms.Button buscar;
+        private System.Windows.Forms.TextBox textoBuscaNome;
+        private System.Windows.Forms.Label labelBusca;
+        private System.Windows.Forms.Button botaoRelatorio;
     }
 }
 
