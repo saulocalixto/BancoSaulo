@@ -30,11 +30,18 @@ namespace BancoSaulo
                 listaResultado.Items.Add(c);
             }
 
-            double somaSaldo = resultado.Sum(conta => conta.saldo);
-            double maiorSaldo = resultado.Max(conta => conta.saldo);
+            try
+            {
+                double somaSaldo = resultado.Sum(conta => conta.saldo);
+                double maiorSaldo = resultado.Max(conta => conta.saldo);
 
-            labelSaldo.Text = Convert.ToString(somaSaldo);
-            labelMaior.Text = Convert.ToString(maiorSaldo);
+
+                labelSaldo.Text = Convert.ToString(somaSaldo);
+                labelMaior.Text = Convert.ToString(maiorSaldo);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Não tem!");
+            }
         }
 
         private void botaoCC_Click(object sender, EventArgs e)

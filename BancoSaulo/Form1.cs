@@ -15,6 +15,7 @@ namespace BancoSaulo
         public Banco()
         {
             InitializeComponent();
+            FormClosing += form_FormClosing;
         }
 
         private List<Conta> contas;
@@ -39,6 +40,7 @@ namespace BancoSaulo
             this.contas = new List<Conta>();
             this.dicionario = new Dictionary<string, Conta>();
             TotalizadorDeContas t = new TotalizadorDeContas();
+            LerDados.lerArquivo(this);
 
         }
 
@@ -176,6 +178,14 @@ namespace BancoSaulo
         {
             FormRelatorios form = new FormRelatorios(contas);
             form.ShowDialog();
+        }
+
+        private void form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                GravarDados.escreverDados(contas);
+            }
         }
     }
 }
